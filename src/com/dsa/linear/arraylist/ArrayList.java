@@ -123,6 +123,25 @@ public class ArrayList <T> implements List <T> {
         this.size--;
     }
 
+    @Override
+    public void Reverse() {
+
+        if (this.size == 0)
+            return;
+
+        Object[] temp = new Object[this.capacity];
+
+        int index = 0;
+
+        for (int i = this.size - 1; i >= 0; i--) {
+
+            temp[index] = this.list[i];
+            index++;
+        }
+
+        this.list = temp;
+    }
+
     private void Expand() {
 
         this.capacity = this.capacity * 2;

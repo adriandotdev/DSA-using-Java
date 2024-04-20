@@ -13,4 +13,6 @@ public interface List <T> {
     public void RemoveFirst();
 
     public void RemoveLast();
+
+    public void Reverse();
 }

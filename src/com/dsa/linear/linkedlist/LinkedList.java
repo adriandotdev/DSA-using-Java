@@ -136,12 +136,12 @@ public class LinkedList<T> implements List<T> {
         currentNode.SetNext(null);
     }
 
-    public void Reverse(Node<T> head) {
+    public void Reverse() {
 
         if (this.Size() == 0) return;
 
         Node<T> prev = null;
-        Node<T> currentNode = head;
+        Node<T> currentNode = this.head;
         Node<T> next = currentNode.GetNext();
         Node<T> temp;
 

@@ -18,8 +18,8 @@ public class Main {
         l.Insert(10);
 //        l.InsertAt(9, 55);
         l.Insert(11);
-        l.RemoveLast();
-
+//        l.RemoveLast();
+        l.Reverse();
         System.out.println(l);
     }
 }

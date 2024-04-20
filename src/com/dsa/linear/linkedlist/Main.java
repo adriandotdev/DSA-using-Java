@@ -20,7 +20,7 @@ public class Main {
 //        System.out.println(l);
 //        l.RemoveLast();
         System.out.println(l);
-        l.Reverse(l.GetHead());
+        l.Reverse();
         System.out.println(l);
     }
 }
