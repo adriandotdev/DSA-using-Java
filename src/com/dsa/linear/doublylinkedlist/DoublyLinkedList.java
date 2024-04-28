@@ -1,6 +1,8 @@
 package com.dsa.linear.doublylinkedlist;
 
-public class DoublyLinkedList<T> {
+import com.interfaces.List;
+
+public class DoublyLinkedList<T> implements List<T> {
 
     private Node<T> head;
 
@@ -24,6 +26,71 @@ public class DoublyLinkedList<T> {
 
         currentNode.SetNext(newNode);
         newNode.SetPrevious(currentNode);
+    }
+
+    public void InsertAt(int index, T data) {
+
+        Node<T> newNode = new Node<>(data);
+        Node<T> currentNode = this.head;
+
+        if (index == 0) {
+            this.head = newNode;
+            this.head.SetNext(currentNode);
+            currentNode.SetPrevious(this.head);
+            return;
+        }
+    }
+
+    @Override
+    public void Remove(int index) {
+
+    }
+
+    @Override
+    public int Size() {
+
+        Node<T> currentNode = this.head;
+        int size = 0;
+
+        while (currentNode != null) {
+
+            currentNode = currentNode.GetNext();
+            size++;
+        }
+
+        return size;
+    }
+
+    @Override
+    public void RemoveFirst() {
+
+    }
+
+    @Override
+    public void RemoveLast() {
+
+    }
+
+    @Override
+    public void Reverse() {
+
+        if (this.Size() == 0) return;
+
+        Node<T> currentNode = this.head;
+
+        // 1<->2<->3
+        while (currentNode.GetNext() != null) {
+
+            currentNode = currentNode.GetNext();
+        }
+
+        this.head = currentNode;
+
+        currentNode = this.head;
+
+        while (currentNode != null) {
+
+        }
     }
 
     @Override
