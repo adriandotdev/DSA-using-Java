@@ -16,9 +16,10 @@ public class Main {
         l.Insert(8);
         l.Insert(9);
         l.Insert(10);
+//        l.InsertAt(9, 55);
         l.Insert(11);
-
-        System.out.println("Size: " + l.Size());
+//        l.RemoveLast();
+        l.Reverse();
         System.out.println(l);
     }
 }

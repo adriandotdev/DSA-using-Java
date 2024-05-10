@@ -1,8 +1,9 @@
-package com.dsa.linear.linkedlist;
+package com.dsa.linear.stack;
 
 public class Node<T> {
 
     private T data;
+
     private Node<T> next;
 
     public Node(T data) {

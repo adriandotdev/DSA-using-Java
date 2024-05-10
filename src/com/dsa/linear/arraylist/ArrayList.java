@@ -2,20 +2,13 @@ package com.dsa.linear.arraylist;
 
 import com.interfaces.List;
 
-public class ArrayList <T> implements List<T> {
+public class ArrayList <T> implements List <T> {
 
-    private final int defaultCapacity = 10;
+    private final int DEFAULT_CAPACITY = 10;
 
-    private Object [] list;
+    private Object[] list;
     private int capacity;
     private int size;
-
-    public ArrayList() {
-
-        this.capacity = defaultCapacity;
-        this.size = 0;
-        this.list = new Object[this.capacity];
-    }
 
     public ArrayList(int capacity) {
 
@@ -24,27 +17,19 @@ public class ArrayList <T> implements List<T> {
         this.list = new Object[this.capacity];
     }
 
+    public ArrayList() {
+
+        this.capacity = this.DEFAULT_CAPACITY;
+        this.size = 0;
+        this.list = new Object[this.capacity];
+    }
+
     @Override
-    public void Insert(Object data) {
+    public void Insert(T data) {
 
-        if (this.size == 0) {
-            this.list[0] = data;
-            this.size++;
-            return;
-        }
-
-        /* If the size is equal to the capacity of the array list, then we need to expand it */
         if (this.size == this.capacity) {
 
-            Object[] tempArray = new Object[this.size * 2];
-
-            for (int i = 0; i < this.list.length; i++) {
-
-                tempArray[i] = this.list[i];
-            }
-
-            this.list = tempArray;
-            this.capacity = this.list.length;
+            this.Expand();
         }
 
         this.list[this.size] = data;
@@ -52,47 +37,53 @@ public class ArrayList <T> implements List<T> {
     }
 
     @Override
-    public void InsertAt(int index, Object data) {
-        // 1 2 3 4 5 6 7 0 0 0 0 0
+    public void InsertAt(int index, T data) {
 
-        if (index >= this.Size()) throw new IndexOutOfBoundsException("Invalid Index");
+        if (index < 0 || index >= this.size) throw new IndexOutOfBoundsException();
 
-        if (this.size + 1 > this.capacity) {
-
-            Object[] tempArray = new Object[this.size * 2];
-
-            for (int i = 0; i < this.list.length; i++) {
-
-                tempArray[i] = this.list[i];
-            }
-
-            this.list = tempArray;
-            this.capacity = this.list.length;
+        if (this.size + 1 >= this.capacity) {
+            this.Expand();
         }
 
-        Object[] tempArray = new Object[this.capacity];
+        Object[] temp = new Object[this.capacity];
 
         for (int i = 0; i < index; i++) {
 
-            tempArray[i] = this.list[i];
+            temp[i] = this.list[i];
         }
 
+        temp[index] = data;
 
+        for (int i = index + 1; i <= this.size; i++) {
+
+            temp[i] = this.list[i - 1];
+        }
+
+        this.list = temp;
+        this.size++;
+        System.out.println(this.size + " " + this.capacity);
     }
 
     @Override
-    public void RemoveStart() {
+    public void Remove(int index) {
 
-    }
+        if (index < 0 || index >= this.size) throw new IndexOutOfBoundsException();
 
-    @Override
-    public void RemoveEnd() {
+        // 1 2 3 4 5
+        Object temp[] = new Object[this.capacity];
 
-    }
+        for (int i = 0; i < index; i++) {
 
-    @Override
-    public void RemoveAt(int index) {
+            temp[i] = this.list[i];
+        }
 
+        for (int i = index + 1; i < this.size; i++) {
+
+            temp[i-1] = this.list[i];
+        }
+
+        this.list = temp;
+        this.size--;
     }
 
     @Override
@@ -101,7 +92,74 @@ public class ArrayList <T> implements List<T> {
     }
 
     @Override
+    public void RemoveFirst() {
+
+        if (this.size == 0) throw new IndexOutOfBoundsException();
+
+        Object[] temp = new Object[this.capacity];
+
+        for (int i = 1; i < this.size; i++) {
+
+            temp[i-1] = this.list[i];
+        }
+
+        this.list = temp;
+        this.size--;
+    }
+
+    @Override
+    public void RemoveLast() {
+
+        if (this.size == 0) throw new IndexOutOfBoundsException();
+
+        Object[] temp = new Object[this.capacity];
+
+        for (int i = 0; i < this.size - 1; i++) {
+
+            temp[i] = this.list[i];
+        }
+
+        this.list = temp;
+        this.size--;
+    }
+
+    @Override
+    public void Reverse() {
+
+        if (this.size == 0)
+            return;
+
+        Object[] temp = new Object[this.capacity];
+
+        int index = 0;
+
+        for (int i = this.size - 1; i >= 0; i--) {
+
+            temp[index] = this.list[i];
+            index++;
+        }
+
+        this.list = temp;
+    }
+
+    private void Expand() {
+
+        this.capacity = this.capacity * 2;
+
+        Object[] temp = new Object[this.capacity];
+
+        for (int i = 0; i < this.list.length; i++) {
+
+            temp[i] = this.list[i];
+        }
+
+        this.list = temp;
+    }
+
+    @Override
     public String toString() {
+
+        if (this.size == 0) return "[]";
 
         String data = "";
 

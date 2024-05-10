@@ -4,16 +4,23 @@ public class Main {
 
     public static void main(String[] args) {
 
-      LinkedList<String> l = new LinkedList<>();
+        LinkedList<String> l = new LinkedList<>();
 
-      l.Insert("Adrian Nads");
-      l.Insert("Lenard");
-      l.Insert("RC Khaye");
-      l.Insert("Eric");
-      l.Insert("Mikaela");
 
-      System.out.println(l);
-        l.Reverse(l.GetHead());
+        l.Insert("1");
+        l.Insert("2");
+//        l.Insert("3");
+//        l.Insert("4");
+//
+//        l.Insert("5");
+//        l.Insert("6");
+//        l.Insert("7");
+//        l.Insert("8");
+
+//        System.out.println(l);
+//        l.RemoveLast();
+        System.out.println(l);
+        l.Reverse();
         System.out.println(l);
     }
 }
