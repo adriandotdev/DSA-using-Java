@@ -9,11 +9,13 @@ public class Main {
 
         dl.Insert(1);
         dl.Insert(2);
-        dl.InsertAt(0, 55);
+        dl.Insert(3);
+        dl.Insert(4);
+        dl.Insert(5);
 
         System.out.println(dl);
 
-        dl.Reverse();
+        dl.RemoveLast();
 
         System.out.println(dl);
     }
