@@ -1,6 +1,10 @@
 package com.dsa.linear.queue;
 
-public class Queue<T> {
+import java.util.Iterator;
+import java.util.Spliterator;
+import java.util.function.Consumer;
+
+public class Queue<T> implements Iterable<T> {
 
     private Node<T> head;
 
@@ -59,5 +63,26 @@ public class Queue<T> {
         }
 
         return "[ " + data.substring(0, data.length() - 2) + " ]";
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new QueueIterator();
+    }
+
+    private class QueueIterator implements Iterator<T> {
+        private Node<T> current = head;
+
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        @Override
+        public T next() {
+            T data = current.GetData();
+            current = current.GetNext();
+            return data;
+        }
     }
 }
