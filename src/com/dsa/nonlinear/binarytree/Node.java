@@ -1,32 +1,32 @@
 package com.dsa.nonlinear.binarytree;
 
-public class Node<T> {
+public class Node {
 
-    private T data;
-    private Node<T> left;
-    private Node<T> right;
+    private int data;
+    private Node left;
+    private Node right;
 
-    public Node(T data) {
+    public Node(int data) {
         this.data = data;
     }
 
-    public T GetData() {
+    public int GetKey() {
         return data;
     }
 
-    public Node<T> GetLeft() {
+    public Node GetLeft() {
         return left;
     }
 
-    public void SetLeft(Node<T> left) {
+    public void SetLeft(Node left) {
         this.left = left;
     }
 
-    public Node<T> GetRight() {
+    public Node GetRight() {
         return right;
     }
 
-    public void SetRight(Node<T> right) {
+    public void SetRight(Node right) {
         this.right = right;
     }
 }

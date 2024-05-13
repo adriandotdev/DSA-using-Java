@@ -39,7 +39,7 @@ public class Tree<T> {
         this.queue.Enqueue(newNode);
     }
 
-    public void PreOrder() {
+    public void PreOrderTraversal() {
 
         String visitedNode = "";
         Stack<Node<T>> s = new Stack<>();
@@ -60,7 +60,7 @@ public class Tree<T> {
         System.out.println("PRE-ORDER: " + visitedNode);
     }
 
-    public void InOrder() {
+    public void InOrderTraversal() {
 
         String visitedNodes = "";
         Stack<Node<T>> s = new Stack<>();
@@ -81,7 +81,7 @@ public class Tree<T> {
         System.out.println("IN-ORDER: " + visitedNodes);
     }
 
-    public void PostOrder() {
+    public void PostOrderTraversal() {
 
         String visitedNodes = "";
         Stack<Node<T>> s = new Stack<>();
@@ -113,6 +113,76 @@ public class Tree<T> {
             }
         }
         System.out.println("POST-ORDER: " + visitedNodes);
+    }
+
+    public void LevelTraversal() {
+
+        Queue<Node<T>> q = new Queue<>();
+        q.Enqueue(this.root);
+        String visitedNodes = "";
+
+        while (!q.IsEmpty()) {
+
+            visitedNodes += q.Peek().GetKey() + " ";
+
+            if (q.Peek().GetLeft() != null) {
+                q.Enqueue(q.Peek().GetLeft());
+            }
+
+            if (q.Peek().GetRight() != null) {
+                q.Enqueue(q.Peek().GetRight());
+            }
+
+            q.Dequeue();
+        }
+
+        System.out.println("LEVEL-TRAVERSAL: " + visitedNodes);
+    }
+
+    public void ReverseInorderTraversal() {
+
+        Stack<Node<T>> s = new Stack<>();
+        Node<T> current = this.root;
+        String visitedNodes = "";
+
+        while (current != null || !s.IsEmpty()) {
+
+            while (current != null) {
+
+                s.Push(current);
+                current = current.GetRight();
+            }
+
+            current = s.Pop();
+            visitedNodes += current.GetKey() + " ";
+            current = current.GetLeft();
+        }
+
+        System.out.println("REVERSE-INORDER-TRAVERSAL: " + visitedNodes);
+    }
+
+    public void MaximumDepth() {
+
+        Queue<Node<T>> q = new Queue<>();
+        q.Enqueue(this.root);
+
+        Node<T> currentNode = null;
+        int depth = 1;
+
+        while (!q.IsEmpty()) {
+
+            if (q.Peek().GetLeft() != null) {
+                q.Enqueue(q.Peek().GetLeft());
+            }
+
+            if (q.Peek().GetRight() != null) {
+                q.Enqueue(q.Peek().GetRight());
+            }
+
+            currentNode = q.Dequeue();
+        }
+
+        System.out.println("DEPTH: " + (depth ));
     }
 
     @Override
