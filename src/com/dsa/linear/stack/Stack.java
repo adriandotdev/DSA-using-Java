@@ -56,6 +56,10 @@ public class Stack<T> {
         return nodeToPop.GetData();
     }
 
+    public boolean IsEmpty() {
+        return this.head == null;
+    }
+
     public T Peek() {
 
         if (this.head == null) {
