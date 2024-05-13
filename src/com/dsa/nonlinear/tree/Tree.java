@@ -1,9 +1,7 @@
-package com.dsa.nonlinear;
+package com.dsa.nonlinear.tree;
 
 import com.dsa.linear.queue.Queue;
 import com.dsa.linear.stack.Stack;
-
-import java.util.Iterator;
 
 public class Tree<T> {
 
@@ -13,7 +11,7 @@ public class Tree<T> {
     public Tree() {
         this.queue = new Queue<>();
     }
-    
+
     public void Insert(T key) {
 
         Node<T> newNode = new Node<>(key);

@@ -1,4 +1,4 @@
-package com.dsa.nonlinear;
+package com.dsa.nonlinear.tree;
 
 public class Node<T> {
 
