@@ -24,7 +24,7 @@ public class LinearSearch {
             }
         }
 
-        if (index == -1) return "Number Not Found";
+        if (index == -1) return "Number Not Found: " + numberToFind;
 
         return "Number Found at: " + index;
     }

@@ -13,11 +13,10 @@ public class BinarySearch {
 
         int countOfSearch = 0;
         int index = -1;
-        int left = 0; // 0 5 7
-        int right = numbers.length - 1; // 7
-        int middle = numbers.length / 2; // 6
-        // find: 1
-        // 1 2 3 4 5 6 7 8
+        int left = 0;
+        int right = numbers.length - 1;
+        int middle = numbers.length / 2;
+
         while (left < right) {
 
             countOfSearch++;
@@ -27,13 +26,11 @@ public class BinarySearch {
                 return "FOUND AT: " + index + ", NUMBER OF SEARCH: " + countOfSearch;
             }
             else if (numberToFind < numbers[middle]) {
-
                 right = middle - 1;
                 middle = (Math.abs(left + right) + 1) / 2;
             }
             else if (numberToFind > numbers[middle]) {
                 left = middle + 1;
-                // 7 +
                 int newMiddle = left + ((Math.abs(left - right)) / 2);
                 middle = newMiddle;
             }
