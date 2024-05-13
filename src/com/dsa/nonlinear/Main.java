@@ -12,11 +12,11 @@ public class Main {
         t.Insert(5);
         t.Insert(6);
         t.Insert(7);
+        t.Insert(8);
 
         System.out.println(t);
         t.PreOrder();
+        t.InOrder();
         t.PostOrder();
-//        t.PreOrderTraversalIteratively();
-//        t.PostOrderTraversalIteratively();
     }
 }

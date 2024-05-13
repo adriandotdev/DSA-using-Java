@@ -13,7 +13,7 @@ public class Tree<T> {
     public Tree() {
         this.queue = new Queue<>();
     }
-
+    
     public void Insert(T key) {
 
         Node<T> newNode = new Node<>(key);
@@ -62,7 +62,7 @@ public class Tree<T> {
         System.out.println("PRE-ORDER: " + visitedNode);
     }
 
-    public void PostOrder() {
+    public void InOrder() {
 
         String visitedNodes = "";
         Stack<Node<T>> s = new Stack<>();
@@ -70,126 +70,51 @@ public class Tree<T> {
 
         while (current != null || !s.IsEmpty()) {
 
-            
-        }
-        System.out.println(visitedNodes);
-    }
-
-    public void PreOrderTraversalIteratively() {
-
-        String data = "";
-        Stack<Node<T>> s = new Stack<>();
-        Node<T> current = this.root;
-
-        while (current != null) {
-
-            data += current.GetKey() + " ";
-
-            if (current.GetRight() != null) {
-                s.Push(current.GetRight());
-            }
-
-            if (current.GetLeft() != null) {
+            while (current != null) {
+                s.Push(current);
                 current = current.GetLeft();
-                continue;
             }
 
-            if (!s.IsEmpty()) {
-                current = s.Pop();
-            } else if (s.IsEmpty()){
-                break;
-            }
+            current = s.Pop();
+            visitedNodes += current.GetKey() + " ";
+            current = current.GetRight();
         }
 
-        System.out.println("PRE-ORDER: " + data);
+        System.out.println("IN-ORDER: " + visitedNodes);
     }
 
-    public void PostOrderTraversalIteratively() {
+    public void PostOrder() {
 
-        String data = "";
+        String visitedNodes = "";
         Stack<Node<T>> s = new Stack<>();
-        Stack<Node<T>> leftAndRightNodes = new Stack<>();
-
         Node<T> current = this.root;
+        Node<T> lastVisitedNode = null;
 
-        s.Push(this.root);
+        while (current != null || !s.IsEmpty()) {
 
-        while (!s.IsEmpty()) {
+            while (current != null) {
 
-            if (current == null && !s.IsEmpty()) {
-                data += s.Peek().GetKey() + " ";
+                s.Push(current);
 
-                if (!leftAndRightNodes.IsEmpty() && (s.Peek().GetLeft() == leftAndRightNodes.Peek() || s.Peek().GetRight() == leftAndRightNodes.Peek())) {
-
-                    leftAndRightNodes.Push(s.Pop());
-                    current = s.Peek();
-
-                    continue;
-                }
-
-                if (s.Peek().GetRight() != null
-                        && s.Peek() != s.Peek().GetRight()) {
-                    s.Push(s.Peek().GetRight());
-                    continue;
-                }
-
-                if (s.Peek().GetLeft() != null && s.Peek() != s.Peek().GetLeft()) {
-                    s.Push(s.Peek().GetLeft());
-                    current = s.Peek();
-                    continue;
-                }
-
-                leftAndRightNodes.Push(s.Pop());
-            }
-            else {
-                if (s.Peek() != current) {
-                    s.Push(current);
-                }
-
-                if (!leftAndRightNodes.IsEmpty() &&
-                        (s.Peek().GetLeft() == leftAndRightNodes.Peek() || s.Peek().GetRight() == leftAndRightNodes.Peek())) {
-
-                    data += s.Peek().GetKey() + " ";
-                    leftAndRightNodes.Push(s.Pop());
-
-                    if (!s.IsEmpty())
-                        current = s.Peek();
-
-                    continue;
-                }
-
-                if (current != null && current.GetRight() != null) {
+                if (current.GetRight() != null) {
                     s.Push(current.GetRight());
                 }
 
-                if (current != null && current.GetLeft() != null) {
-                    s.Push(current.GetLeft());
-                    current = current.GetLeft();
-                    continue;
-                } else {
-                    current = null;
-                }
-            }
-        }
-        System.out.println("POST-ORDER: " + data);
-    }
-
-    public void InOrderTraversalIteratively() {
-
-        String data = "";
-        Node<T> current = this.root;
-        Stack<Node<T>> s = new Stack<>();
-
-        while (!s.IsEmpty()) {
-
-            if (current.GetRight() != null) {
-                s.Push(current.GetRight());
+                current = current.GetLeft();
             }
 
-            s.Push(current);
+            current = s.Peek();
 
-
+            if ((current.GetRight() == null) || (current.GetRight() == lastVisitedNode || current.GetLeft() == lastVisitedNode)) {
+                visitedNodes += current.GetKey() + " ";
+                lastVisitedNode = s.Pop();
+                current = null;
+            }
+            else {
+                current = s.Pop();
+            }
         }
+        System.out.println("POST-ORDER: " + visitedNodes);
     }
 
     @Override
