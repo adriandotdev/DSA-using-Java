@@ -1,4 +1,4 @@
-package com.dsa.nonlinear;
+package com.dsa.nonlinear.tree;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,11 +12,14 @@ public class Main {
         t.Insert(5);
         t.Insert(6);
         t.Insert(7);
+//        t.Insert(8);
 
         System.out.println(t);
-        t.PreOrder();
-        t.PostOrder();
-//        t.PreOrderTraversalIteratively();
-//        t.PostOrderTraversalIteratively();
+        t.PreOrderTraversal();
+        t.InOrderTraversal();
+        t.PostOrderTraversal();
+        t.LevelTraversal();
+        t.ReverseInorderTraversal();
+        t.MaximumDepth();
     }
 }
