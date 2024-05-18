@@ -70,7 +70,16 @@ public class Tree<T> {
 
         while (current != null || !s.IsEmpty()) {
 
-            
+            while (current != null) {
+
+                s.Push(current);
+
+//                if (current.GetRight() != null) {
+//                    s.Push(current.GetRight());
+//                }
+
+                current = current.GetLeft();
+            }
         }
         System.out.println(visitedNodes);
     }
