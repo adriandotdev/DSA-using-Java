@@ -166,8 +166,7 @@ public class Tree<T> {
         Queue<Node<T>> q = new Queue<>();
         q.Enqueue(this.root);
 
-        Node<T> currentNode = null;
-        int depth = 1;
+        int depth = 0;
 
         while (!q.IsEmpty()) {
 
@@ -179,10 +178,14 @@ public class Tree<T> {
                 q.Enqueue(q.Peek().GetRight());
             }
 
-            currentNode = q.Dequeue();
+            if (q.Peek().GetLeft() != null || q.Peek().GetRight() != null) {
+                depth++;
+            }
+
+            q.Dequeue();
         }
 
-        System.out.println("DEPTH: " + (depth ));
+        System.out.println("DEPTH: " + (depth - 1));
     }
 
     @Override
@@ -195,15 +198,11 @@ public class Tree<T> {
         data += this.root.GetKey() + ", ";
         for (Node<T> node : this.queue) {
 
-//            System.out.println("CURRENT: " + node.GetKey());
-
             if (node.GetLeft() != null) {
-//                System.out.println("LEFT: " + node.GetLeft().GetKey());
                 data += node.GetLeft().GetKey() + ", ";
             }
 
             if (node.GetRight() != null) {
-//                System.out.println("RIGHT: " + node.GetRight().GetKey());
                 data += node.GetRight().GetKey() + ", ";
             }
         }
